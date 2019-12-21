@@ -1,0 +1,86 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Editar Persona</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Form -->
+<div class="inner-wrapper">
+  <form (ngSubmit)="submitPersonaForm()" #myForm="ngForm">
+    <!-- Left block -->
+    <mat-card>
+
+      <!-- Name -->
+      <mat-form-field>
+        <input matInput placeholder="Nombre" [(ngModel)]="persona.name" id="name" name="name"
+          minlength="3" pattern="[A-Za-z ]+" required>
+      </mat-form-field>
+
+      <!-- Apellidos -->
+      <mat-form-field>
+        <input matInput placeholder="Apellidos" [(ngModel)]="persona.apellidos" id="apellidos"
+          name="apellidos" minlength="3" pattern="[A-Za-z ]+" required>
+      </mat-form-field>
+
+      <!-- Color -->
+      <mat-form-field>
+        <input matInput placeholder="Color" [(ngModel)]="persona.color" id="color"
+          name="color" minlength="3" pattern="[A-Za-z]+" required>
+      </mat-form-field>
+
+    </mat-card>
+
+    <!-- Right block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+
+       <!-- Edad -->
+       <mat-form-field>
+       <input matInput type="number" placeholder="Edad" [(ngModel)]="persona.edad" id="edad" name="edad" 
+       min="0" max="125" onkeydown="return false" required>
+       </mat-form-field>
+
+        <!-- Cumpleaños -->
+        <mat-form-field>
+          <input matInput readonly [matDatepicker]="picker" placeholder="Cumpleaños" [(ngModel)]="persona.dob"
+            id="dob" name="dob" dateFormat="YYYY-MM-DD">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Gender -->
+        <div class="misc-bottom-padding">
+          <mat-label>Género:</mat-label>
+          <mat-select [(value)]="persona.gender">
+            <mat-option value="Hombre">Hombre</mat-option>
+            <mat-option value="Mujer">Mujer</mat-option>
+            <mat-option value="Otro">Otro</mat-option>
+            <mat-option value="No especificado">No especificado</mat-option>
+          </mat-select>
+
+        <!-- DNI -->
+      <mat-form-field>
+        <input matInput placeholder="DNI" [(ngModel)]="persona.dni" id="dni" name="dni"
+        pattern="[a-zA-Z0-9-]{9}" required>
+      </mat-form-field>
+
+      <!-- Notas -->
+      <mat-form-field>
+        <input matInput placeholder="Notas" [(ngModel)]="persona.notas" id="notas" name="notas"
+        required>
+      </mat-form-field>
+          
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-raised-button color="primary" [disabled]="myForm.form.invalid" type="submit" >Submit</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
